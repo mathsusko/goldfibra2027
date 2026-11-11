@@ -49,7 +49,21 @@ void main() {
   float g = w / abs(p.y - wave(gx));
   float b = w / abs(p.y - wave(bx));
 
-  gl_FragColor = vec4(r, g, b, 1.0);
+  // Sobre papel claro, como tinta: cada canal multiplica o papel pela sua cor
+  // (vermelho, verde, azul); onde os três se sobrepõem (o núcleo branco do original)
+  // a mistura escurece até a tinta azul-marinho da marca.
+  vec3 paper = vec3(0.933, 0.941, 0.973);
+  vec3 tinta = vec3(0.055, 0.110, 0.161);
+  float ar = smoothstep(0.45, 1.8, r);
+  float ag = smoothstep(0.45, 1.8, g);
+  float ab = smoothstep(0.45, 1.8, b);
+  vec3 col = paper;
+  col *= mix(vec3(1.0), vec3(1.0, 0.25, 0.30), ar);
+  col *= mix(vec3(1.0), vec3(0.25, 0.95, 0.45), ag);
+  col *= mix(vec3(1.0), vec3(0.30, 0.38, 1.00), ab);
+  float core = smoothstep(1.2, 3.0, min(r, min(g, b)));
+  col = mix(col, tinta, core);
+  gl_FragColor = vec4(col, 1.0);
 }`;
 
 export default function LightWave() {
