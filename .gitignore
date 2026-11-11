@@ -4,3 +4,8 @@ out
 next-env.d.ts
 *.tsbuildinfo
 .env*.local
+
+# Nunca versionar: skill proprietária (licença Labrego IA) e chaves de API
+.claude/skills/site-cinematografico/
+*.key
+.env*
