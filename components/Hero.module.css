@@ -1,0 +1,14 @@
+.title {
+  font-family: "SF Pro", sans-serif;
+  font-stretch: expanded;
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 6vw;
+    line-height: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("/fonts/SF-Pro.ttf") format("truetype");
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-poppins), sans-serif;
+  width: 100vw;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+.text-gradient-custom {
+  background: linear-gradient(90deg, #0e1c29, #31628f);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-custom-two {
+  background: linear-gradient(197deg, #1572b400 11.62%, #1572b433 46.66%), #0e1c29;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-custom-gradient {
+  background: linear-gradient(197deg, #1572b400 11.62%, #1572b433 46.66%), #0e1c29;
+}
