@@ -1,41 +1,176 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-@font-face {
-  font-family: "SF Pro";
-  src: url("/fonts/SF-Pro.ttf") format("truetype");
-  font-display: swap;
+@custom-variant dark (&:is(.dark *));
+
+/* Paleta Goldfibra: névoa (fundo), tinta (marca), elétrico (luz da fibra),
+   sinal (vermelho do folheto), luz (brilho dos pulsos). */
+:root {
+  --nevoa: #eef0f8;
+  --lilas: #e4e7ff;
+  --tinta: #0e1c29;
+  --eletrico: #2a3bff;
+  --sinal: #e3262f;
+  --luz: #7fe3ff;
+  --papel: #ffffff;
+  --page-bg: var(--nevoa);
+
+  --radius: 1.25rem;
+  --background: var(--nevoa);
+  --foreground: var(--tinta);
+  --card: var(--papel);
+  --card-foreground: var(--tinta);
+  --popover: var(--papel);
+  --popover-foreground: var(--tinta);
+  --primary: var(--tinta);
+  --primary-foreground: var(--papel);
+  --secondary: var(--lilas);
+  --secondary-foreground: var(--tinta);
+  --muted: var(--lilas);
+  --muted-foreground: #4a5566;
+  --accent: var(--eletrico);
+  --accent-foreground: var(--papel);
+  --destructive: var(--sinal);
+  --border: rgb(14 28 41 / 0.14);
+  --input: rgb(14 28 41 / 0.14);
+  --ring: var(--eletrico);
 }
 
-html {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --color-nevoa: var(--nevoa);
+  --color-lilas: var(--lilas);
+  --color-tinta: var(--tinta);
+  --color-eletrico: var(--eletrico);
+  --color-sinal: var(--sinal);
+  --color-luz: var(--luz);
+  --color-papel: var(--papel);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.4);
+  --radius-md: calc(var(--radius) * 0.6);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
-body {
-  font-family: var(--font-poppins), sans-serif;
-  width: 100vw;
-  background-color: #fff;
-  overflow-x: hidden;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  body {
+    background-color: var(--page-bg);
+    color: var(--tinta);
+    font-family: var(--font-sans);
+    font-variation-settings: "wdth" 100;
+    overflow-x: hidden;
+    transition: background-color 0.6s ease;
+  }
+  ::selection {
+    background: var(--eletrico);
+    color: var(--papel);
+  }
+  :focus-visible {
+    outline: 2px solid var(--eletrico);
+    outline-offset: 3px;
+  }
 }
 
-.text-gradient-custom {
-  background: linear-gradient(90deg, #0e1c29, #31628f);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+@layer utilities {
+  /* Títulos expandidos: o eixo de largura da Archivo retoma o SF Pro Expanded do site antigo */
+  .display {
+    font-variation-settings: "wdth" 118;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+  .micro {
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variation-settings: "wdth" 100;
+  }
+  .gutter {
+    padding-inline: 1rem;
+  }
+  @media (min-width: 768px) {
+    .gutter {
+      padding-inline: 2.5rem;
+    }
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
 }
 
-.text-gradient-custom-two {
-  background: linear-gradient(197deg, #1572b400 11.62%, #1572b433 46.66%), #0e1c29;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Linhas de texto que entram por baixo (SplitText) */
+.split-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
 }
 
-.bg-custom-gradient {
-  background: linear-gradient(197deg, #1572b400 11.62%, #1572b433 46.66%), #0e1c29;
+/* Rolagem de letras no hover dos links */
+.roll {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: top;
+}
+.roll > span {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--i) * 18ms);
+}
+.roll > span::after {
+  content: attr(data-char);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.group:hover .roll > span,
+.group:focus-visible .roll > span {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

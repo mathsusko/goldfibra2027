@@ -9,3 +9,4 @@ next-env.d.ts
 .claude/skills/site-cinematografico/
 *.key
 .env*
+media-src/

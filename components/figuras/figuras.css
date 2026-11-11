@@ -1,0 +1,129 @@
+/* Tokens da anatomy na paleta Goldfibra (tema claro): papel branco, tinta azul-marinho,
+   aceso em azul elétrico. Escopo em .gf-iso, nunca em :root. */
+.gf-iso[data-theme="light"] {
+  --anatomy-page: #eef0f8;
+  --anatomy-card: #ffffff;
+  --anatomy-text: #3d4a5c;
+  --anatomy-strong: #0e1c29;
+  --anatomy-muted: #6f7a8c;
+  --anatomy-paper: #ffffff;
+  --anatomy-face: #ffffff;
+  --anatomy-top: #ffffff;
+  --anatomy-shade-0: #d5dbef;
+  --anatomy-shade-1: #e0e5f5;
+  --anatomy-shade-2: #e9ecf8;
+  --anatomy-shade-3: #f2f4fc;
+  --anatomy-lit-top: #ffffff;
+  --anatomy-lit-shade: #e6e9ff;
+  --anatomy-hi: #0e1c29;
+  --anatomy-mid: #6c7891;
+  --anatomy-lo: #a9b2c8;
+  --anatomy-faint: #d2d7e6;
+  --anatomy-lit: #2a3bff;
+  --anatomy-halo: #4b5b8f;
+  --anatomy-halo-opacity: 0.26;
+  --anatomy-dot: #0e1c29;
+  --anatomy-mono: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  margin: 0;
+}
+
+.gf-iso .iso-plate {
+  padding: 40px 14px 40px;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 0 1px rgb(14 28 41 / 0.08), 0 18px 40px -28px rgb(14 28 41 / 0.45);
+}
+.gf-iso .iso-plate-corners {
+  inset: 16px 18px;
+}
+.gf-iso .iso-plate-corner {
+  font-size: 10.5px;
+}
+.gf-iso .iso-stage {
+  outline: none;
+  border-radius: 0.75rem;
+}
+.gf-iso .iso-stage:focus-visible {
+  box-shadow: 0 0 0 2px var(--eletrico);
+}
+
+/* cabo de fibra e os pulsos de luz que correm por ele */
+.gf-cabo {
+  fill: none;
+  stroke: var(--anatomy-hi);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gf-pulso {
+  fill: none;
+  stroke: var(--luz);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 2 14;
+  filter: drop-shadow(0 0 1.6px var(--luz));
+  animation: gf-pulso 1.4s linear infinite;
+}
+@keyframes gf-pulso {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+/* LED da fibra (PON), luz REC da câmera e lâmpada de status */
+.gf-led circle {
+  fill: var(--luz);
+  filter: drop-shadow(0 0 2px var(--luz));
+  animation: gf-pisca 2.4s ease-in-out infinite;
+}
+.gf-rec circle {
+  fill: var(--sinal);
+  animation: gf-pisca 1.6s ease-in-out infinite;
+}
+.gf-lampada {
+  fill: var(--luz);
+  opacity: 0.5;
+  filter: blur(4px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: gf-respira 2.4s ease-in-out infinite;
+}
+.gf-iso .iso-solid[data-lit] > .iso-top {
+  fill: #e9fbff;
+}
+@keyframes gf-pisca {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes gf-respira {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+/* anéis de som da campainha */
+.gf-anel {
+  fill: none;
+  stroke: var(--eletrico);
+  stroke-width: 0.9;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gf-pulso,
+  .gf-led circle,
+  .gf-rec circle,
+  .gf-lampada {
+    animation: none;
+  }
+}
