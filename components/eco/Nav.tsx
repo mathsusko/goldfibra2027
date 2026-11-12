@@ -93,9 +93,9 @@ export default function Nav() {
             <img
               src="/img/header/logo.svg"
               alt="Goldfibra"
-              width={127}
-              height={16}
-              className={`h-[16px] w-auto transition-[filter] duration-200 ${escuroTexto ? "brightness-0" : ""}`}
+              width={206}
+              height={26}
+              className={`h-[22px] w-auto md:h-[26px] transition-[filter] duration-200 ${escuroTexto ? "brightness-0" : ""}`}
             />
           </a>
           <nav aria-label="Principal" className="hidden items-stretch gap-[30px] lg:flex">
