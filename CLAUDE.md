@@ -1,6 +1,6 @@
 # Goldfibra — site institucional
 
-Landing page da GoldFibra Telecomunicações em Next.js (App Router). Código em `app/` e `components/`; imagens e fontes em `public/`. `_legacy-build/` é o build Vite antigo, só para referência.
+Landing page da GoldFibra Telecomunicações em Next.js (App Router), no estilo de eco.com. Seções em `components/eco/`, dados (planos, contatos, menu) em `lib/conteudo.ts`, toda a redação de referência em `docs/redacao.md`; imagens e fontes em `public/`.
 
 ## Trabalho de UI
 
@@ -8,7 +8,7 @@ Em qualquer trabalho de UI neste projeto (criar, alterar ou revisar páginas e c
 
 ## Stack de referência
 
-Padrão para trabalhos novos (o projeto ainda está em Tailwind v3, sem shadcn/GSAP/Lenis; migrar só quando pedido):
+Padrão para trabalhos novos (o projeto já usa Tailwind v4, GSAP e Lenis; shadcn/ui só quando pedido):
 
 - Next.js (App Router) + React + TypeScript
 - Tailwind v4 + shadcn/ui

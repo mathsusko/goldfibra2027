@@ -1,38 +1,24 @@
-import SmoothScroll from "@/components/site/SmoothScroll";
-import Preloader from "@/components/site/Preloader";
-import Header from "@/components/site/Header";
-import LiquidCursor from "@/components/site/LiquidCursor";
-import BackgroundShift from "@/components/site/BackgroundShift";
-import Hero from "@/components/site/Hero";
-import Manifesto from "@/components/site/Manifesto";
-import VideoReel from "@/components/site/VideoReel";
-import Planos from "@/components/site/Planos";
-import Segmentos from "@/components/site/Segmentos";
-import Duvidas from "@/components/site/Duvidas";
-import Rodape from "@/components/site/Rodape";
+import Rolagem from "@/components/eco/Rolagem";
+import Nav from "@/components/eco/Nav";
+import Hero from "@/components/eco/Hero";
+import TextoRevelado from "@/components/eco/TextoRevelado";
+import PilhaPlanos from "@/components/eco/PilhaPlanos";
+import Chamada from "@/components/eco/Chamada";
+import Selos from "@/components/eco/Selos";
+import Rodape from "@/components/eco/Rodape";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <a
-        href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-papel focus:px-4 focus:py-2"
-      >
-        Pular para o conteúdo
-      </a>
-      <Preloader />
-      <Header />
-      <LiquidCursor />
-      <main id="conteudo">
+    <Rolagem>
+      <Nav />
+      <main>
         <Hero />
-        <Manifesto />
-        <VideoReel />
-        <Planos />
-        <Segmentos />
-        <Duvidas />
+        <TextoRevelado />
+        <PilhaPlanos />
+        <Chamada />
+        <Selos />
       </main>
       <Rodape />
-      <BackgroundShift />
-    </SmoothScroll>
+    </Rolagem>
   );
 }

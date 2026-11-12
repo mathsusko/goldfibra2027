@@ -1,83 +1,18 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
-/* Paleta Goldfibra: névoa (fundo), tinta (marca), elétrico (luz da fibra),
-   sinal (vermelho do folheto), luz (brilho dos pulsos). */
-:root {
-  --nevoa: #eef0f8;
-  --lilas: #e4e7ff;
-  --tinta: #0e1c29;
-  --eletrico: #2a3bff;
-  --sinal: #e3262f;
-  --luz: #7fe3ff;
-  --papel: #ffffff;
-  --page-bg: var(--nevoa);
-
-  --radius: 1.25rem;
-  --background: var(--nevoa);
-  --foreground: var(--tinta);
-  --card: var(--papel);
-  --card-foreground: var(--tinta);
-  --popover: var(--papel);
-  --popover-foreground: var(--tinta);
-  --primary: var(--tinta);
-  --primary-foreground: var(--papel);
-  --secondary: var(--lilas);
-  --secondary-foreground: var(--tinta);
-  --muted: var(--lilas);
-  --muted-foreground: #4a5566;
-  --accent: var(--eletrico);
-  --accent-foreground: var(--papel);
-  --destructive: var(--sinal);
-  --border: rgb(14 28 41 / 0.14);
-  --input: rgb(14 28 41 / 0.14);
-  --ring: var(--eletrico);
-}
-
-@theme inline {
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-
-  --color-nevoa: var(--nevoa);
-  --color-lilas: var(--lilas);
-  --color-tinta: var(--tinta);
-  --color-eletrico: var(--eletrico);
-  --color-sinal: var(--sinal);
-  --color-luz: var(--luz);
-  --color-papel: var(--papel);
-
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.4);
-  --radius-md: calc(var(--radius) * 0.6);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-fragment), ui-monospace, monospace;
+  --color-linha: #212121;
+  --color-cinza: #999999;
+  --color-cinza-escuro: #7c7c7c;
+  --color-azul: #2a3bff;
+  --color-azul-claro: #6f8cff;
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   html {
+    background: #000;
     -webkit-tap-highlight-color: transparent;
   }
   html.lenis,
@@ -87,135 +22,94 @@
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
   }
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
   body {
-    background-color: var(--page-bg);
-    color: var(--tinta);
+    background: #000;
+    color: #fff;
     font-family: var(--font-sans);
-    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    transition: background-color 0.6s ease;
   }
   ::selection {
-    background: var(--eletrico);
-    color: var(--papel);
+    background: var(--color-azul);
+    color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--eletrico);
+    outline: 2px solid var(--color-azul-claro);
     outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
 @layer utilities {
-  /* Títulos expandidos: o eixo de largura da Archivo retoma o SF Pro Expanded do site antigo */
-  .display {
-    font-variation-settings: "wdth" 118;
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 0.95;
+  /* Margem lateral única do site: 20px no celular, 60px no desktop e mais nas telas largas */
+  .gutter {
+    padding-inline: 20px;
+  }
+  @media (min-width: 810px) {
+    .gutter {
+      padding-inline: 60px;
+    }
+  }
+  @media (min-width: 1665px) {
+    .gutter {
+      padding-inline: max(60px, calc(46.5vw - 714.2px));
+    }
+  }
+  .titulo {
+    letter-spacing: -0.04em;
+    line-height: 1.05;
     text-wrap: balance;
   }
-  .micro {
-    font-size: 0.6875rem;
-    line-height: 1.4;
-    letter-spacing: 0.08em;
+  .mono {
+    font-family: var(--font-fragment), ui-monospace, monospace;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
-    font-variation-settings: "wdth" 100;
-  }
-  .gutter {
-    padding-inline: 1rem;
-  }
-  @media (min-width: 768px) {
-    .gutter {
-      padding-inline: 2.5rem;
-    }
   }
   .tabular {
     font-variant-numeric: tabular-nums;
   }
 }
 
-/* Linhas de texto que entram por baixo (SplitText) */
-.split-line {
-  overflow: hidden;
-  padding-bottom: 0.08em;
+/* ruído de TV sobre o vídeo do hero */
+@keyframes estatica {
+  0% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-1.2%, 0.9%, 0); }
+  20% { transform: translate3d(1.1%, -0.8%, 0); }
+  30% { transform: translate3d(-0.7%, -1.1%, 0); }
+  40% { transform: translate3d(1.5%, 0.7%, 0); }
+  50% { transform: translate3d(-1.3%, 1.1%, 0); }
+  60% { transform: translate3d(0.9%, -1.2%, 0); }
+  70% { transform: translate3d(-1.1%, 0.4%, 0); }
+  80% { transform: translate3d(1.3%, 1%, 0); }
+  90% { transform: translate3d(-0.8%, -0.7%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.estatica {
+  position: absolute;
+  inset: -10%;
+  opacity: 0.2;
+  pointer-events: none;
+  background-size: 128px 128px;
+  animation: estatica 0.142857s steps(12) infinite;
 }
 
-/* Rolagem de letras no hover dos links */
-.roll {
-  display: inline-flex;
-  overflow: hidden;
-  vertical-align: top;
+/* links de colunas: os outros escurecem quando um está sob o cursor */
+@media (hover: hover) and (pointer: fine) {
+  .apagaveis:hover a:not(:hover) {
+    opacity: 0.5;
+  }
 }
-.roll > span {
-  display: inline-block;
-  position: relative;
-  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-  transition-delay: calc(var(--i) * 18ms);
-}
-.roll > span::after {
-  content: attr(data-char);
-  position: absolute;
-  left: 0;
-  top: 100%;
-}
-.group:hover .roll > span,
-.group:focus-visible .roll > span {
-  transform: translateY(-100%);
+.apagaveis a {
+  transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .estatica {
+    animation: none;
+  }
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 1ms !important;
   }
-}
-
-/* ---------- hero: tela do medidor ---------- */
-.gf-medidor {
-  background: radial-gradient(120% 70% at 50% 30%, #13284a 0%, #0a1424 60%, #070d18 100%);
-  font-family: var(--font-sans);
-  font-variation-settings: "wdth" 100;
-  transition: opacity 0.4s ease;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
-}
-
-/* ---------- hero: moedas 3D ---------- */
-.gf-moeda {
-  perspective: 600px;
-  filter: drop-shadow(0 18px 22px rgb(4 10 30 / 0.45));
-}
-.gf-moeda-giro {
-  transform-style: preserve-3d;
-}
-.gf-moeda-borda,
-.gf-moeda-face {
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-}
-/* espessura: um disco mais escuro atrás, deslocado no eixo Z */
-.gf-moeda-borda {
-  background: linear-gradient(180deg, #1b2bd6 0%, #0b1a8f 100%);
-  transform: translateZ(calc(var(--tam) * -0.11));
-  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08) inset;
-}
-.gf-moeda-face {
-  display: grid;
-  place-items: center;
-  color: #ffffff;
-  background:
-    radial-gradient(120% 120% at 30% 22%, rgb(255 255 255 / 0.55) 0%, rgb(255 255 255 / 0) 38%),
-    linear-gradient(150deg, #6f8cff 0%, #2a3bff 48%, #1a27c9 100%);
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.45),
-    inset 0 -6px 14px rgb(8 16 120 / 0.55),
-    0 0 0 1px rgb(255 255 255 / 0.12);
-}
-.gf-moeda-face svg {
-  filter: drop-shadow(0 2px 0 rgb(10 20 140 / 0.6));
 }
