@@ -5,11 +5,11 @@ import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import SplitReveal from "./SplitReveal";
 import Pill from "./Pill";
 import { DIFERENCIAIS, WHATSAPP_URL } from "@/lib/content";
-import FiguraFibra from "@/components/figuras/FiguraFibra";
-import FiguraCofre from "@/components/figuras/FiguraCofre";
-import FiguraCampainha from "@/components/figuras/FiguraCampainha";
+import CardFibra from "@/components/figuras/CardFibra";
+import CardSuporte from "@/components/figuras/CardSuporte";
+import CardGames from "@/components/figuras/CardGames";
 
-const FIGURAS = [FiguraFibra, FiguraCofre, FiguraCampainha];
+const FIGURAS = [CardFibra, CardSuporte, CardGames];
 
 /** Manifesto com a "linha de fibra" que se desenha conforme a rolagem e um pulso de luz que corre por ela. */
 export default function Manifesto() {

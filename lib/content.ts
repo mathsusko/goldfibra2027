@@ -72,16 +72,16 @@ export const SEGMENTOS = [
 
 export const DIFERENCIAIS = [
   {
-    titulo: "Internet de qualidade",
-    texto: "Atendimento imediato: o suporte é agendado no instante em que você liga.",
-  },
-  {
-    titulo: "Segurança 24h",
-    texto: "A proteção dos seus dados é garantida 24 horas por dia.",
+    titulo: "Internet Fibra Óptica",
+    texto: "A ultravelocidade e estabilidade que sua casa ou empresa precisam para navegar sem interrupções.",
   },
   {
     titulo: "Suporte exclusivo",
     texto: "Suporte técnico especializado sempre que você precisar.",
+  },
+  {
+    titulo: "Baixa Latência para Games",
+    texto: "Rotas otimizadas para jogar sem lag e trabalhar sem atrasos na transmissão.",
   },
 ];
 
